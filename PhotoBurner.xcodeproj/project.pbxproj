@@ -17,6 +17,7 @@
 		BF864916223024B90038F04F /* PhotoBurnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864915223024B90038F04F /* PhotoBurnerUITests.swift */; };
 		BF864924223048AC0038F04F /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864923223048AC0038F04F /* PhotoHelper.swift */; };
 		BF864926223056BC0038F04F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864925223056BC0038F04F /* DefaultKeys.swift */; };
+		BF86492822305EDA0038F04F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = BF86492722305EDA0038F04F /* Readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		BF864917223024B90038F04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF864923223048AC0038F04F /* PhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
 		BF864925223056BC0038F04F /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
+		BF86492722305EDA0038F04F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		BF8648E6223024B80038F04F = {
 			isa = PBXGroup;
 			children = (
+				BF86492722305EDA0038F04F /* Readme.md */,
 				BF8648F1223024B80038F04F /* PhotoBurner */,
 				BF864909223024B90038F04F /* PhotoBurnerTests */,
 				BF864914223024B90038F04F /* PhotoBurnerUITests */,
@@ -104,12 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				BF8648F2223024B80038F04F /* AppDelegate.swift */,
-				BF8648F4223024B80038F04F /* ViewController.swift */,
-				BF864923223048AC0038F04F /* PhotoHelper.swift */,
-				BF864925223056BC0038F04F /* DefaultKeys.swift */,
-				BF8648F6223024B80038F04F /* Main.storyboard */,
+				BF86492A22305F430038F04F /* Model */,
+				BF86492B22305F4E0038F04F /* View */,
+				BF86492922305F390038F04F /* Controller */,
 				BF8648FC223024B90038F04F /* Assets.xcassets */,
-				BF8648FE223024B90038F04F /* LaunchScreen.storyboard */,
 				BF864901223024B90038F04F /* Info.plist */,
 				BF8648F9223024B80038F04F /* PhotoBurner.xcdatamodeld */,
 			);
@@ -132,6 +133,32 @@
 				BF864917223024B90038F04F /* Info.plist */,
 			);
 			path = PhotoBurnerUITests;
+			sourceTree = "<group>";
+		};
+		BF86492922305F390038F04F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF8648F4223024B80038F04F /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF86492A22305F430038F04F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF864925223056BC0038F04F /* DefaultKeys.swift */,
+				BF864923223048AC0038F04F /* PhotoHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF86492B22305F4E0038F04F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF8648F6223024B80038F04F /* Main.storyboard */,
+				BF8648FE223024B90038F04F /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +267,7 @@
 			files = (
 				BF864900223024B90038F04F /* LaunchScreen.storyboard in Resources */,
 				BF8648FD223024B90038F04F /* Assets.xcassets in Resources */,
+				BF86492822305EDA0038F04F /* Readme.md in Resources */,
 				BF8648F8223024B80038F04F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
