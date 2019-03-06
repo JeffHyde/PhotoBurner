@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DefaultKeys {
+enum DefaultKeys {
     static let imageAuthStatus = "ImageAuthStatusDefaultsKey"
+    
 }
-

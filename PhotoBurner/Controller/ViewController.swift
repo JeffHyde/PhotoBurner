@@ -21,22 +21,20 @@ class ViewController: UIViewController {
         imageController.delegate = self
         imageController.sourceType = .photoLibrary
         PhotoRequester.requestAccess()
-        
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
         getPhoto()
-        
     }
     
     @IBAction func deletePhoto(_ sender: Any) {
         deletePhoto()
-        
     }
     
     func getPhoto() {
         PhotoGetter.get(viewController: self, imagePicerController: imageController) { (completeWithImage, isAuthorized) in
-            if completeWithImage == true && isAuthorized == true {
+            if completeWithImage == true &&
+                isAuthorized == true {
                 print("Image Picker Presented")
             } else {
                 print("Inform user of fail or auth status")
@@ -54,7 +52,6 @@ class ViewController: UIViewController {
                 print("Inform user of fail")
             }
         }
-        
     }
     
 }
@@ -62,12 +59,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true) {   }
-        
+        dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let asset = info[.phAsset] as? PHAsset, let image = info[.originalImage] as? UIImage {
+        if let asset = info[.phAsset] as? PHAsset,
+            let image = info[.originalImage] as? UIImage {
             self.imageAsset = asset
             dismiss(animated: true) {
                 DispatchQueue.main.async {
@@ -77,7 +74,6 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         } else {
             print("Inform user of fail")
         }
-        
     }
     
 }

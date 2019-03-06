@@ -8,41 +8,52 @@
 
 import Foundation
 import Photos
+
 struct PhotoGetter {
     static func get(viewController: UIViewController, imagePicerController: UIImagePickerController, completion: @escaping ((_ completeWithImage: Bool, _ authStatus: Bool)-> Void)) {
         if UserDefaults.standard.bool(forKey: DefaultKeys.imageAuthStatus) == true {
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                viewController.present(imagePicerController, animated: true) {
-                    completion(true, true)
+                viewController.present(imagePicerController,
+                                       animated: true) {
+                    completion(true,
+                               true)
                 }
             } else {
-                completion(false, true)
+                completion(false,
+                           true)
             }
         } else {
-            completion(false, false)
+            completion(false,
+                       false)
         }
-        
     }
+    
 }
+
 struct PhotoDeleter {
-    static func delete(asset: PHAsset?, completion: @escaping ((_ complete: Bool, _ error: Bool) -> Void) ) {
+    static func delete(asset: PHAsset?,
+                       completion: @escaping ((_ complete: Bool,
+        _ error: Bool) -> Void) ) {
         PHPhotoLibrary.shared().performChanges({
-            guard let asset = asset else {return}
+            guard let asset = asset else { return }
             PHAssetChangeRequest.deleteAssets([asset] as NSFastEnumeration)
-        }) { (complete, error) in
+        }) { (complete,
+            error) in
             if error != nil {
-                completion(false, true)
+                completion(false,
+                           true)
             } else {
                 if complete == true {
-                    completion(true, false)
+                    completion(true,
+                               false)
                 } else {
-                    completion(false, false)
+                    completion(false,
+                               false)
                 }
             }
         }
-        
     }
-
+    
 }
 
 struct PhotoRequester {
@@ -50,12 +61,11 @@ struct PhotoRequester {
         PHPhotoLibrary.requestAuthorization( {
             (status) in
             if status == .authorized {
-                  UserDefaults.standard.set(true, forKey: DefaultKeys.imageAuthStatus)
+                UserDefaults.standard.set(true, forKey: DefaultKeys.imageAuthStatus)
             } else {
-                  UserDefaults.standard.set(false, forKey: DefaultKeys.imageAuthStatus)
+                UserDefaults.standard.set(false, forKey: DefaultKeys.imageAuthStatus)
             }
         })
-        
     }
     
 }
