@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="landscape">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,37 +15,45 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoBurner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o4J-Kd-AFn">
-                                <rect key="frame" x="16" y="16" width="704" height="200"/>
+                                <rect key="frame" x="16" y="36" width="382" height="200"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="PeH-3P-qaP"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MME-LQ-Pdk">
-                                <rect key="frame" x="323.66666666666669" y="224" width="89" height="30"/>
+                                <rect key="frame" x="162.66666666666666" y="244" width="89" height="30"/>
                                 <state key="normal" title="Delete Photo"/>
                                 <connections>
                                     <action selector="deletePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dS0-9M-9QL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWa-k1-p34">
-                                <rect key="frame" x="333.66666666666669" y="368" width="69" height="30"/>
+                                <rect key="frame" x="172.66666666666666" y="690" width="69" height="30"/>
                                 <state key="normal" title="Get Photo"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q2T-6E-81s"/>
+                                    <action selector="getPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q2T-6E-81s"/>
                                 </connections>
                             </button>
+                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXp-b6-LlK">
+                                <rect key="frame" x="16" y="36" width="382" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </skView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="o4J-Kd-AFn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2dF-W6-x6Y"/>
+                            <constraint firstItem="dXp-b6-LlK" firstAttribute="width" secondItem="o4J-Kd-AFn" secondAttribute="width" id="4ew-ms-E8U"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GWa-k1-p34" secondAttribute="bottom" constant="16" id="6wd-dn-KSF"/>
                             <constraint firstItem="MME-LQ-Pdk" firstAttribute="top" secondItem="o4J-Kd-AFn" secondAttribute="bottom" constant="8" id="8NJ-kI-h3V"/>
+                            <constraint firstItem="dXp-b6-LlK" firstAttribute="height" secondItem="o4J-Kd-AFn" secondAttribute="height" id="Ofy-Qi-Dpf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o4J-Kd-AFn" secondAttribute="trailing" constant="16" id="Ppk-9A-obn"/>
+                            <constraint firstItem="dXp-b6-LlK" firstAttribute="centerX" secondItem="o4J-Kd-AFn" secondAttribute="centerX" id="WSK-3x-iR9"/>
+                            <constraint firstItem="dXp-b6-LlK" firstAttribute="centerY" secondItem="o4J-Kd-AFn" secondAttribute="centerY" id="elm-hd-Id4"/>
                             <constraint firstItem="GWa-k1-p34" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fse-MW-1my"/>
                             <constraint firstItem="o4J-Kd-AFn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="lOv-v9-Ufw"/>
                             <constraint firstItem="MME-LQ-Pdk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z4D-qY-4uP"/>
@@ -54,11 +62,10 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="o4J-Kd-AFn" id="NPt-F3-Eib"/>
-                        <outlet property="photoDelegate" destination="e7q-VD-DjI" id="FH5-XT-AGs"/>
+                        <outlet property="spriteView" destination="dXp-b6-LlK" id="5rI-1L-SjS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="e7q-VD-DjI" customClass="PhotoDelegate" customModule="PhotoBurner" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="133.125" y="128.75"/>
         </scene>

@@ -8,34 +8,25 @@
 
 import UIKit
 import Photos
+import SpriteKit
 
 class ViewController: UIViewController {
-    @IBOutlet var photoDelegate: PhotoDelegate!
+    
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var spriteView: SKView!
     
-    let imagePickerController = UIImagePickerController()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        imageView.image = photoDelegate.image
-    }
+    let photoDelegate = PhotoDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpImagePicker()
+        setUpSpriteScene()
     }
+
     
-    func setUpImagePicker() {
-        imagePickerController.delegate = photoDelegate
-        imagePickerController.sourceType = .photoLibrary
-        photoDelegate.requestAccess()
-    }
-    
-    @IBAction func buttonPressed(_ sender: Any) {
-        photoDelegate.get {
-            self.present(self.imagePickerController, animated: true, completion: {
-                print("Picker Completed Navigation")
-            })
+    @IBAction func getPhotoPressed(_ sender: Any) {
+        photoDelegate.get(from: self) { [weak self] image in
+            guard let self = self else {  return  print("self is bad")}
+            self.imageView.image = image
         }
     }
     
@@ -50,5 +41,18 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func setUpSpriteScene() {
+            guard let scene = SKScene(fileNamed: "FireScene") else { return }
+            scene.scaleMode = .aspectFill
+            spriteView.allowsTransparency = true
+            spriteView.backgroundColor = UIColor.clear
+            spriteView.presentScene(scene)
+            scene.backgroundColor = UIColor.clear
+            spriteView.ignoresSiblingOrder = true
+            spriteView.showsFPS = true
+            spriteView.showsNodeCount = true
+        }
+    
     
 }

@@ -11,43 +11,44 @@ import Photos
 import UIKit
 
 class PhotoDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var image:UIImage?
-    var asset:PHAsset?
-    var authStatus:PHAuthorizationStatus?
+    private var asset:PHAsset?
+    private var imagePickerController: UIImagePickerController?
+    private var completion: ((UIImage?) -> Void)?
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.asset = nil
-        self.image = nil
-        picker.dismiss(animated: true,
-                       completion: nil)
+        picker.dismiss(animated: true) {
+            self.imagePickerController = nil
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let asset = info[.phAsset] as? PHAsset else { return }
         guard let image = info[.originalImage] as? UIImage else { return }
         self.asset = asset
-        self.image = image
-        picker.dismiss(animated: true,
-                       completion: nil)
+        
+        if let com = completion {
+            com(image)
+        }
+        picker.dismiss(animated: true) {
+            self.imagePickerController = nil
+        }
+    }
+
+    func get(from viewController: UIViewController, completion: @escaping ((UIImage?)->()) ) {
+        PHPhotoLibrary.requestAuthorization { [weak self] status in
+            guard let self = self else { return }
+            guard status == .authorized else { return }
+            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true else { return }
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            self.imagePickerController = picker
+            self.completion = completion
+            viewController.present(picker, animated: true)
+        }
     }
     
-    func dismiss(completion: @escaping (()->()) ) {
-        completion()
-    }
-    
-    func requestAccess() {
-        PHPhotoLibrary.requestAuthorization( {
-            (status) in
-            self.authStatus = status
-        })
-    }
-    
-    func get(completion: @escaping (()->()) ) {
-        guard self.authStatus == .authorized else { return }
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true else { return }
-        completion()
-    }
-  
     func delete(completion: @escaping ((UIAlertController?) -> ())) {
         PHPhotoLibrary.shared().performChanges({
             guard let asset = self.asset else { return }

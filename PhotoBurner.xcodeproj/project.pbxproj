@@ -16,8 +16,11 @@
 		BF86490B223024B90038F04F /* PhotoBurnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86490A223024B90038F04F /* PhotoBurnerTests.swift */; };
 		BF864916223024B90038F04F /* PhotoBurnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864915223024B90038F04F /* PhotoBurnerUITests.swift */; };
 		BF864924223048AC0038F04F /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864923223048AC0038F04F /* PhotoHelper.swift */; };
-		BF864926223056BC0038F04F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF864925223056BC0038F04F /* DefaultKeys.swift */; };
 		BF86492822305EDA0038F04F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = BF86492722305EDA0038F04F /* Readme.md */; };
+		BF86492D2230ABD20038F04F /* FireScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BF86492C2230ABD20038F04F /* FireScene.sks */; };
+		BF86492F2230AC320038F04F /* FireScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86492E2230AC320038F04F /* FireScene.swift */; };
+		BF8649322230AFD30038F04F /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = BF8649302230AFD30038F04F /* FireParticle.sks */; };
+		BF8649332230AFD30038F04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF8649312230AFD30038F04F /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +56,11 @@
 		BF864915223024B90038F04F /* PhotoBurnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBurnerUITests.swift; sourceTree = "<group>"; };
 		BF864917223024B90038F04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF864923223048AC0038F04F /* PhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
-		BF864925223056BC0038F04F /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
 		BF86492722305EDA0038F04F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		BF86492C2230ABD20038F04F /* FireScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireScene.sks; sourceTree = "<group>"; };
+		BF86492E2230AC320038F04F /* FireScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireScene.swift; sourceTree = "<group>"; };
+		BF8649302230AFD30038F04F /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
+		BF8649312230AFD30038F04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +152,6 @@
 		BF86492A22305F430038F04F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BF864925223056BC0038F04F /* DefaultKeys.swift */,
 				BF864923223048AC0038F04F /* PhotoHelper.swift */,
 			);
 			path = Model;
@@ -156,6 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				BF8648F6223024B80038F04F /* Main.storyboard */,
+				BF86492C2230ABD20038F04F /* FireScene.sks */,
+				BF8649302230AFD30038F04F /* FireParticle.sks */,
+				BF8649312230AFD30038F04F /* Assets.xcassets */,
+				BF86492E2230AC320038F04F /* FireScene.swift */,
 				BF8648FE223024B90038F04F /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -267,8 +276,11 @@
 			files = (
 				BF864900223024B90038F04F /* LaunchScreen.storyboard in Resources */,
 				BF8648FD223024B90038F04F /* Assets.xcassets in Resources */,
+				BF86492D2230ABD20038F04F /* FireScene.sks in Resources */,
 				BF86492822305EDA0038F04F /* Readme.md in Resources */,
+				BF8649332230AFD30038F04F /* Assets.xcassets in Resources */,
 				BF8648F8223024B80038F04F /* Main.storyboard in Resources */,
+				BF8649322230AFD30038F04F /* FireParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +307,7 @@
 			files = (
 				BF8648F5223024B80038F04F /* ViewController.swift in Sources */,
 				BF8648FB223024B80038F04F /* PhotoBurner.xcdatamodeld in Sources */,
-				BF864926223056BC0038F04F /* DefaultKeys.swift in Sources */,
+				BF86492F2230AC320038F04F /* FireScene.swift in Sources */,
 				BF864924223048AC0038F04F /* PhotoHelper.swift in Sources */,
 				BF8648F3223024B80038F04F /* AppDelegate.swift in Sources */,
 			);
