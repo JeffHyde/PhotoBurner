@@ -8,64 +8,62 @@
 
 import Foundation
 import Photos
+import UIKit
 
-struct PhotoGetter {
-    static func get(viewController: UIViewController, imagePicerController: UIImagePickerController, completion: @escaping ((_ completeWithImage: Bool, _ authStatus: Bool)-> Void)) {
-        if UserDefaults.standard.bool(forKey: DefaultKeys.imageAuthStatus) == true {
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                viewController.present(imagePicerController,
-                                       animated: true) {
-                    completion(true,
-                               true)
-                }
-            } else {
-                completion(false,
-                           true)
-            }
-        } else {
-            completion(false,
-                       false)
-        }
+class PhotoDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var image:UIImage?
+    var asset:PHAsset?
+    var authStatus:PHAuthorizationStatus?
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.asset = nil
+        self.image = nil
+        picker.dismiss(animated: true,
+                       completion: nil)
     }
     
-}
-
-struct PhotoDeleter {
-    static func delete(asset: PHAsset?,
-                       completion: @escaping ((_ complete: Bool,
-        _ error: Bool) -> Void) ) {
-        PHPhotoLibrary.shared().performChanges({
-            guard let asset = asset else { return }
-            PHAssetChangeRequest.deleteAssets([asset] as NSFastEnumeration)
-        }) { (complete,
-            error) in
-            if error != nil {
-                completion(false,
-                           true)
-            } else {
-                if complete == true {
-                    completion(true,
-                               false)
-                } else {
-                    completion(false,
-                               false)
-                }
-            }
-        }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let asset = info[.phAsset] as? PHAsset else { return }
+        guard let image = info[.originalImage] as? UIImage else { return }
+        self.asset = asset
+        self.image = image
+        picker.dismiss(animated: true,
+                       completion: nil)
     }
     
-}
-
-struct PhotoRequester {
-    static func requestAccess() {
+    func dismiss(completion: @escaping (()->()) ) {
+        completion()
+    }
+    
+    func requestAccess() {
         PHPhotoLibrary.requestAuthorization( {
             (status) in
-            if status == .authorized {
-                UserDefaults.standard.set(true, forKey: DefaultKeys.imageAuthStatus)
-            } else {
-                UserDefaults.standard.set(false, forKey: DefaultKeys.imageAuthStatus)
-            }
+            self.authStatus = status
         })
+    }
+    
+    func get(completion: @escaping (()->()) ) {
+        guard self.authStatus == .authorized else { return }
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true else { return }
+        completion()
+    }
+  
+    func delete(completion: @escaping ((UIAlertController?) -> ())) {
+        PHPhotoLibrary.shared().performChanges({
+            guard let asset = self.asset else { return }
+            PHAssetChangeRequest.deleteAssets([asset] as NSFastEnumeration)
+        }, completionHandler: ({ (complete, error) in
+            if error == nil {
+                guard complete == true else {return}
+                completion(nil)
+            } else {
+                //MARK: TODO - Needs Work
+                let alert = UIAlertController(title: "Deleting Photo Failed",
+                                              message: "If this persists please contact the developer",
+                                              preferredStyle: .alert)
+                completion(alert)
+            }
+        }))
     }
     
 }

@@ -54,9 +54,11 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="o4J-Kd-AFn" id="NPt-F3-Eib"/>
+                        <outlet property="photoDelegate" destination="e7q-VD-DjI" id="FH5-XT-AGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="e7q-VD-DjI" customClass="PhotoDelegate" customModule="PhotoBurner" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="133.125" y="128.75"/>
         </scene>
